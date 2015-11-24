@@ -1,0 +1,70 @@
+PATH
+  remote: ./plugins/ruboty-rtn_todo
+  specs:
+    ruboty-rtn_todo (0.1.0)
+      ruboty
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    activesupport (4.2.5)
+      i18n (~> 0.7)
+      json (~> 1.7, >= 1.7.7)
+      minitest (~> 5.1)
+      thread_safe (~> 0.3, >= 0.3.4)
+      tzinfo (~> 1.1)
+    dotenv (2.0.2)
+    eventmachine (1.0.8)
+    faraday (0.9.0)
+      multipart-post (>= 1.2, < 3)
+    faraday_middleware (0.10.0)
+      faraday (>= 0.7.4, < 0.10)
+    faye-websocket (0.9.2)
+      eventmachine (>= 0.12.0)
+      websocket-driver (>= 0.5.1)
+    i18n (0.7.0)
+    json (1.8.3)
+    mem (0.1.5)
+    minitest (5.8.3)
+    multi_json (1.11.2)
+    multipart-post (2.0.0)
+    redis (3.2.2)
+    redis-namespace (1.5.2)
+      redis (~> 3.0, >= 3.0.4)
+    ruboty (1.2.2)
+      activesupport
+      bundler
+      dotenv
+      mem
+      slop
+    ruboty-redis (0.0.6)
+      redis
+      redis-namespace
+      ruboty
+    ruboty-slack_rtm (1.5.1)
+      ruboty (>= 1.1.4)
+      slack-api (~> 1.0.0)
+      slack-rtmapi (~> 1.0.0.rc4)
+    slack-api (1.0.0)
+      faraday (>= 0.7, <= 0.9)
+      faraday_middleware (~> 0.8)
+      faye-websocket (~> 0.9.2)
+      multi_json (~> 1.0, >= 1.0.3)
+    slack-rtmapi (1.0.0.rc4)
+      websocket-driver
+    slop (4.2.0)
+    thread_safe (0.3.5)
+    tzinfo (1.2.2)
+      thread_safe (~> 0.1)
+    websocket-driver (0.6.3)
+      websocket-extensions (>= 0.1.0)
+    websocket-extensions (0.1.2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  ruboty
+  ruboty-redis
+  ruboty-rtn_todo!
+  ruboty-slack_rtm
