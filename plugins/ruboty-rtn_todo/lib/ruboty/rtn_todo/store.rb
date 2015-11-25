@@ -1,4 +1,3 @@
-require 'ruboty/rtn_todo/version'
 require 'ruboty'
 
 module Ruboty
