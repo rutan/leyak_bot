@@ -23,11 +23,19 @@ module Ruboty
         end
       end
 
-      def done!(ids)
+      def update_status!(status, ids)
         @data.each { |task|
           next unless ids.include?(task.id)
-          task.status = :done
+          task.status = status
         }
+      end
+
+      def doing!(ids)
+        update_status!(:doing, ids)
+      end
+
+      def done!(ids)
+        update_status!(:done, ids)
       end
 
       def cleanup!
