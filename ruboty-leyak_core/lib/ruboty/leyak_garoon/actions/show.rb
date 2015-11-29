@@ -13,9 +13,7 @@ module Ruboty
           if events.size > 0
             messages << "#{date.strftime("%m/%d")}の予定はこんな感じだよ"
             messages << '```'
-            messages << events.map do |event|
-              "#{event[:period]} [#{event[:plan]}] #{event[:title]} #{event[:facility].size > 0 ? "(#{event[:facility].join(' ')})" : ''}"
-            end
+            messages << events.map { |n| Ruboty::LeyakGaroon::Entities::Event.new(n).to_s }
             messages << '```'
           else
             messages << "#{date.strftime("%m/%d")}は特に予定無いみたいかな"
