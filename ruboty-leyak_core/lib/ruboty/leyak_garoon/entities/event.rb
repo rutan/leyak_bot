@@ -28,7 +28,7 @@ module Ruboty
           array << self.period
           array << "[#{self.plan}]" if self.plan.to_s.size > 0
           array << self.title
-          array << "(#{event[:facility].join(' ')})" if self.facility.size > 0
+          array << "(#{self.facility.join(' ')})" if self.facility.size > 0
           array.join(' ')
         end
 
