@@ -10,7 +10,7 @@ module Ruboty
         private
 
         def tasks
-          store[message.from] ||= Ruboty::LeyakTodo::TodoList.new
+          store[message.from_name] ||= Ruboty::LeyakTodo::TodoList.new
         end
       end
     end

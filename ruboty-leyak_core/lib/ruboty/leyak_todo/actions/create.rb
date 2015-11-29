@@ -8,7 +8,7 @@ module Ruboty
         def call
           tasks.push(
               Ruboty::LeyakTodo::Todo.new(
-                  id: generate_id(message.from),
+                  id: generate_id(message.from_name),
                   content: message[:content],
                   status: :backlog,
               )
