@@ -1,22 +1,8 @@
-GIT
-  remote: git://github.com/rutan/ruboty-brain_wrapper.git
-  revision: de6aeae52bc09eb14f00c44fa6d5b5d7b410f55e
-  specs:
-    ruboty-brain_wrapper (0.1.0)
-      ruboty
-
 PATH
-  remote: ./plugins/ruboty-rtn_garoon
+  remote: ruboty-leyak_core
   specs:
-    ruboty-rtn_garoon (0.1.0)
+    ruboty-leyak_core (0.1.0)
       ragoon
-      ruboty
-      ruboty-brain_wrapper
-
-PATH
-  remote: ./plugins/ruboty-rtn_todo
-  specs:
-    ruboty-rtn_todo (0.1.0)
       ruboty
 
 GEM
@@ -94,11 +80,6 @@ PLATFORMS
 
 DEPENDENCIES
   ruboty
-  ruboty-brain_wrapper!
+  ruboty-leyak_core!
   ruboty-local_yaml
-  ruboty-rtn_garoon!
-  ruboty-rtn_todo!
   ruboty-slack_rtm
-
-BUNDLED WITH
-   1.10.6

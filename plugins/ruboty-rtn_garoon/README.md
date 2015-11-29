@@ -1,1 +1,0 @@
-# Ruboty::RtnGaroon

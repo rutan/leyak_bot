@@ -1,6 +1,0 @@
-source 'https://rubygems.org'
-
-# Specify your gem's dependencies in ruboty-rtn_garoon.gemspec
-gemspec
-gem 'ruboty-brain_wrapper', github: 'rutan/ruboty-brain_wrapper'
-
