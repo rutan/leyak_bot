@@ -1,13 +1,12 @@
 require 'ruboty'
-require 'ruboty/rtn_todo/actions/base'
-require 'ruboty/rtn_todo/actions/show'
-require 'ruboty/rtn_todo/actions/create'
-require 'ruboty/rtn_todo/actions/doing'
-require 'ruboty/rtn_todo/actions/done'
-require 'ruboty/rtn_todo/actions/cleanup'
+require 'ruboty/leyak_todo/actions/show'
+require 'ruboty/leyak_todo/actions/create'
+require 'ruboty/leyak_todo/actions/doing'
+require 'ruboty/leyak_todo/actions/done'
+require 'ruboty/leyak_todo/actions/cleanup'
 
 module Ruboty
-  module RtnTodo
+  module LeyakTodo
     class Handler < Ruboty::Handlers::Base
       on /(?:todo|TODO)(?:\s|$)/,
          name: 'show',
@@ -30,23 +29,23 @@ module Ruboty
          description: 'TODOの完了済みの削除するよ'
 
       def show(message)
-        Ruboty::RtnTodo::Actions::Show.new(message).call
+        Ruboty::LeyakTodo::Actions::Show.new(message).call
       end
 
       def create(message)
-        Ruboty::RtnTodo::Actions::Create.new(message).call
+        Ruboty::LeyakTodo::Actions::Create.new(message).call
       end
 
       def doing(message)
-        Ruboty::RtnTodo::Actions::Doing.new(message).call
+        Ruboty::LeyakTodo::Actions::Doing.new(message).call
       end
 
       def done(message)
-        Ruboty::RtnTodo::Actions::Done.new(message).call
+        Ruboty::LeyakTodo::Actions::Done.new(message).call
       end
 
       def cleanup(message)
-        Ruboty::RtnTodo::Actions::CleanUp.new(message).call
+        Ruboty::LeyakTodo::Actions::CleanUp.new(message).call
       end
     end
   end

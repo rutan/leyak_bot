@@ -1,7 +1,7 @@
-require 'ruboty/rtn_todo/actions/base'
+require 'ruboty/leyak_todo/actions/base'
 
 module Ruboty
-  module RtnTodo
+  module LeyakTodo
     module Actions
       class Show < Base
         def call

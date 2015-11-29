@@ -1,5 +1,5 @@
 module Ruboty
-  module RtnTodo
+  module LeyakTodo
     class Todo
       def initialize(attributes = {})
         attributes.each { |k, v| public_send("#{k}=", v) }

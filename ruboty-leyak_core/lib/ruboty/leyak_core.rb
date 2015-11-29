@@ -1,6 +1,4 @@
-require 'ruboty'
 require 'ruboty/leyak_core/version'
 
-require 'ruboty/brain_wrapper'
-require 'ruboty/rtn_garoon'
-require 'ruboty/rtn_todo'
+require 'ruboty/leyak_garoon/handler'
+require 'ruboty/leyak_todo/handler'

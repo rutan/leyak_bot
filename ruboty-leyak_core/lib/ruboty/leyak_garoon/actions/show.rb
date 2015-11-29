@@ -1,9 +1,9 @@
 require 'date'
 require 'ragoon'
-require 'ruboty/rtn_garoon/actions/base'
+require 'ruboty/leyak_garoon/actions/base'
 
 module Ruboty
-  module RtnGaroon
+  module LeyakGaroon
     module Actions
       class Show < Base
         def call

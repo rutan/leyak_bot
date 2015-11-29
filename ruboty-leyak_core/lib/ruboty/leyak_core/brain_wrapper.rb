@@ -1,14 +1,12 @@
-require 'ruboty'
-
 module Ruboty
-  module RtnTodo
-    class Store
+  module LeyakCore
+    class BrainWrapper
       include Enumerable
 
       def initialize(brain, namespace)
         @brain = brain
         @namespace = namespace
-        @data = (brain.data[namespace] || {})
+        @data = (brain.data[namespace] || {}).dup
       end
 
       attr_reader :brain, :namespace

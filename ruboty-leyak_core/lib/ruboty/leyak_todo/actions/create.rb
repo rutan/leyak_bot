@@ -1,12 +1,13 @@
-require 'ruboty/rtn_todo/actions/base'
+require 'ruboty/leyak_todo/actions/base'
+require 'ruboty/leyak_todo/todo'
 
 module Ruboty
-  module RtnTodo
+  module LeyakTodo
     module Actions
       class Create < Base
         def call
           tasks.push(
-              Ruboty::RtnTodo::Todo.new(
+              Ruboty::LeyakTodo::Todo.new(
                   id: generate_id(message.from),
                   content: message[:content],
                   status: :backlog,

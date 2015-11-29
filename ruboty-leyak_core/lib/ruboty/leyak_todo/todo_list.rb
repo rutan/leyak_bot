@@ -1,8 +1,8 @@
-require 'ruboty/rtn_todo/todo'
+require 'ruboty/leyak_todo/todo'
 require 'forwardable'
 
 module Ruboty
-  module RtnTodo
+  module LeyakTodo
     class TodoList
       include Enumerable
       extend Forwardable
