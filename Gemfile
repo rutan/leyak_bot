@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'ruboty'
+gem 'foreman'
 
 #gem 'ruboty-redis'
 gem 'ruboty-local_yaml'
