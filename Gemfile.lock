@@ -87,6 +87,3 @@ DEPENDENCIES
   ruboty-leyak_core!
   ruboty-local_yaml
   ruboty-slack_rtm
-
-BUNDLED WITH
-   1.10.6

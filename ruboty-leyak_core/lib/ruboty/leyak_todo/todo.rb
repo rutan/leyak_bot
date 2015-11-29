@@ -24,16 +24,16 @@ module Ruboty
       end
 
       def to_s
-        n =
+        status_str =
           case status
           when :done;
-            'x'
+            '[done] '
           when :doing;
-            'o'
+            '(doing) '
           else
-            ; ' '
+            ''
           end
-        "[#{n}] ##{id} #{content}"
+        "##{id} #{status_str}#{content}"
       end
 
       STATUS = {

@@ -47,7 +47,7 @@ module Ruboty
       end
 
       def to_s
-        @data.map(&:to_s).join("\n")
+        @data.map { |t| "- #{t}" }.join("\n")
       end
     end
   end

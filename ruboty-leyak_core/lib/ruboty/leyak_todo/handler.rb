@@ -12,7 +12,7 @@ module Ruboty
          name: 'show',
          description: '溜まっているTODOを教えてあげるよ'
 
-      on /(?:todo|TODO):(?:\s+)(?<content>.+)$/,
+      on /(?:todo|TODO):(?:\s+)(?<contents>.+)\z/m,
          name: 'create',
          description: 'TODOを追加するよ'
 

@@ -6,13 +6,17 @@ module Ruboty
     module Actions
       class Create < Base
         def call
-          tasks.push(
-              Ruboty::LeyakTodo::Todo.new(
-                  id: generate_id(message.from_name),
-                  content: message[:content],
-                  status: :backlog,
-              )
-          )
+          message[:contents].split(/\r?\n/).each do |line|
+            content = line.strip.gsub(/^\-\s+/, '')
+            next if content.empty? || content == '```'
+            tasks.push(
+                Ruboty::LeyakTodo::Todo.new(
+                    id: generate_id(message.from_name),
+                    content: content,
+                    status: :backlog,
+                )
+            )
+          end
           store.save
 
           messages << %w[
