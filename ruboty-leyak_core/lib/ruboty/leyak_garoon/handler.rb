@@ -16,7 +16,7 @@ module Ruboty
          all: true,
          hidden: true
 
-      on /(?:(?<date>今日|本日|明日|明後日)の予定)(?:\s|$)/,
+      on /.*(?:(?<date>今日|本日|明日|明後日)の予定).*/,
          name: 'show',
          description: '今日の予定を持ってくるよ'
 

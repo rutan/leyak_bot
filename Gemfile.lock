@@ -33,14 +33,14 @@ GEM
     json (1.8.3)
     mem (0.1.5)
     mime-types (2.99)
-    mini_portile (0.6.2)
+    mini_portile2 (2.0.0)
     minitest (5.8.3)
     multi_json (1.11.2)
     multipart-post (2.0.0)
     netrc (0.11.0)
-    nokogiri (1.6.6.4)
-      mini_portile (~> 0.6.0)
-    ragoon (0.2.2)
+    nokogiri (1.6.7.1)
+      mini_portile2 (~> 2.0.0.rc2)
+    ragoon (0.4.2)
       nokogiri (~> 1.6.6)
       rest-client (~> 1.8.0)
     rest-client (1.8.0)
@@ -55,7 +55,7 @@ GEM
       slop
     ruboty-local_yaml (0.1.0)
       ruboty
-    ruboty-slack_rtm (1.5.1)
+    ruboty-slack_rtm (1.6.0)
       ruboty (>= 1.1.4)
       slack-api (~> 1.0.0)
       slack-rtmapi (~> 1.0.0.rc4)
@@ -87,3 +87,6 @@ DEPENDENCIES
   ruboty-leyak_core!
   ruboty-local_yaml
   ruboty-slack_rtm
+
+BUNDLED WITH
+   1.11.2
