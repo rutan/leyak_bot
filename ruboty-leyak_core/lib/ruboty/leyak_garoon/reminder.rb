@@ -36,7 +36,7 @@ module Ruboty
           next unless event.start_time > last_checked_at
           next unless (event.start_time - now) < remind_sec
           @robot.receive(
-              body: "/remind-message @#{remind_owner} もうすぐ時間だよ\n```\n#{event}\n```",
+              body: "/remind-message @#{remind_owner} もうすぐ時間だよ\n#{event}",
               from: remind_channel,
           )
         end

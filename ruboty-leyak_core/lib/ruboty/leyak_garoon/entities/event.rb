@@ -49,6 +49,7 @@ module Ruboty
 
         def to_s
           array = []
+          array << '-'
           array << self.period
           if private?
             array << '予定あり'
@@ -56,6 +57,7 @@ module Ruboty
             array << "[#{self.plan}]" if self.plan.to_s.size > 0
             array << self.title
             array << "(#{self.facilities.join(' ')})" if self.facilities.size > 0
+            array << "\n    - #{self.url}"
           end
           array.join(' ')
         end
