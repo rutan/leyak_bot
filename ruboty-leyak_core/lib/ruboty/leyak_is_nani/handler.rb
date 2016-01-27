@@ -12,7 +12,7 @@ module Ruboty
       )
 
       def is_nani(message)
-        url = ImageSearcher.new.search(message[:word])
+        url = ImageSearcher.client.search(message[:word])
         messages = []
         messages << "@#{message.from_name}" if message.from_name
         if url
@@ -23,7 +23,9 @@ module Ruboty
           messages << url
         else
           messages << %w[
-            自分で調べて
+            自分で調べれば？
+            知らない
+            https://google.co.jp
           ].sample
         end
         message.reply(messages.join(' '))
