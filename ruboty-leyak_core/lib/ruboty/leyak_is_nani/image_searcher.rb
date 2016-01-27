@@ -6,6 +6,7 @@ module Ruboty
     class ImageSearcher
       def search(word)
         [:video, :illust, :manga, :book].shuffle.lazy.map { |service|
+          sleep 1
           search_by_nico(service, word)
         }.find { |n| !!n }
       end
@@ -35,7 +36,8 @@ module Ruboty
             _sort: '-viewCounter',
             _limit: 10,
             _context: 'ru_shalm'
-          }
+          },
+          user_agent: 'ru_shalm'
         )
         result = response['data'].sample
         gen_url.call(result['contentId']) if result
