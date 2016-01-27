@@ -5,7 +5,7 @@ module Ruboty
   module LeyakIsNani
     class Handler < Ruboty::Handlers::Base
       on(
-          /^(?<word>[^\s]+)\s+is\s+(?:nani|なに|何)\??/i,
+          /^(?<word>.+)\s+is\s+(?:nani|なに|何)\??/i,
           name: "is_nani",
           description: "pizza_bot",
           all: true,
