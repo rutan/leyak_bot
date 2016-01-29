@@ -10,7 +10,7 @@ module Ruboty
 
       def initialize
         @searchers = []
-        [:video, :illust, :manga, :book, :news].each do |service|
+        [:video, :live, :illust, :manga, :book, :channelarticle, :news].each do |service|
           @searchers << method(:search_by_nico).curry[service]
         end
         @searchers << method(:search_by_3d)
@@ -31,6 +31,9 @@ module Ruboty
         when :video
           gen_url = -> (n) { "http://www.nicovideo.jp/watch/#{n}" }
           targets = 'title,description,tags'
+        when :live
+          gen_url = -> (n) { "http://live.nicovideo.jp/watch/#{n}" }
+          targets = 'title,description,tags'
         when :illust
           gen_url = -> (n) { "http://seiga.nicovideo.jp/seiga/#{n}" }
           targets = 'title,description,tags'
@@ -40,9 +43,12 @@ module Ruboty
         when :book
           gen_url = -> (n) { "http://seiga.nicovideo.jp/watch/#{n}" }
           targets = 'title,description,tags'
+        when :channelarticle
+          gen_url = -> (n) { "http://ch.nicovideo.jp/article/#{n}" }
+          targets = 'title,description'
         when :news
           gen_url = -> (n) { "http://news.nicovideo.jp/watch/#{n}" }
-          targets = 'title'
+          targets = 'title,caption,tags'
         else
           raise 'unknown service'
         end
