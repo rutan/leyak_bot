@@ -30,13 +30,16 @@ module Ruboty
         return unless Crawler.events
 
         now = Time.now
-        Crawler.events.each do |data|
+        events = Crawler.events.select do |data|
           event = Ruboty::LeyakGaroon::Entities::Event.new(data)
           next if event.all_day?
           next unless event.start_time > last_checked_at
           next unless (event.start_time - now) < remind_sec
+          true
+        end
+        if events.size > 0
           @robot.receive(
-              body: "/remind-message @#{remind_owner} もうすぐ時間だよ\n#{event}",
+              body: "/remind-message @#{remind_owner} もうすぐ時間だよ\n```\n#{events.join("\n")}\n```",
               from: remind_channel,
           )
         end
