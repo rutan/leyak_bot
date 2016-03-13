@@ -1,3 +1,5 @@
+require 'active_support'
+require 'active_support/core_ext'
 require 'ruboty/leyak_core/version'
 
 require 'ruboty/leyak_garoon/handler' if ENV['IGNORE_GAROON'].to_i == 0

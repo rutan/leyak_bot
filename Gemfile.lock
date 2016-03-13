@@ -1,7 +1,18 @@
+GIT
+  remote: git://github.com/rutan/ragoon.git
+  revision: 4cdb08b2f27fa02c9e55bdc7d4901c4f28a2e277
+  branch: schedule_add_events
+  specs:
+    ragoon (0.4.3)
+      nokogiri (~> 1.6.6)
+      rest-client (~> 1.8.0)
+
 PATH
   remote: ruboty-leyak_core
   specs:
     ruboty-leyak_core (0.1.0)
+      activesupport
+      horai
       ragoon
       ruboty
 
@@ -14,7 +25,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
-    domain_name (0.5.25)
+    domain_name (0.5.20160309)
       unf (>= 0.0.5, < 1.0.0)
     dotenv (2.0.2)
     eventmachine (1.0.8)
@@ -27,26 +38,28 @@ GEM
       websocket-driver (>= 0.5.1)
     foreman (0.78.0)
       thor (~> 0.19.1)
+    horai (0.7.1)
+      activesupport (>= 3.0.0)
+      i18n (>= 0.6.0)
+      rparsec-ruby19 (>= 1.0)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
     i18n (0.7.0)
     json (1.8.3)
     mem (0.1.5)
-    mime-types (2.99)
+    mime-types (2.99.1)
     mini_portile2 (2.0.0)
     minitest (5.8.3)
     multi_json (1.11.2)
     multipart-post (2.0.0)
     netrc (0.11.0)
-    nokogiri (1.6.7.1)
+    nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
-    ragoon (0.4.2)
-      nokogiri (~> 1.6.6)
-      rest-client (~> 1.8.0)
     rest-client (1.8.0)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
+    rparsec-ruby19 (1.0)
     ruboty (1.2.2)
       activesupport
       bundler
@@ -73,7 +86,7 @@ GEM
       thread_safe (~> 0.1)
     unf (0.1.4)
       unf_ext
-    unf_ext (0.0.7.1)
+    unf_ext (0.0.7.2)
     websocket-driver (0.6.3)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
@@ -83,6 +96,7 @@ PLATFORMS
 
 DEPENDENCIES
   foreman
+  ragoon!
   ruboty
   ruboty-leyak_core!
   ruboty-local_yaml

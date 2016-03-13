@@ -7,6 +7,8 @@ module Ruboty
     module Actions
       class Show < Base
         def call
+          return if message.original[:body].match(/追加|登録|作成/)
+
           date = date_from_str(message[:date])
           events = fetch_events(date)
 
