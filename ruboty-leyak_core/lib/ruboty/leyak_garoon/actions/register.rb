@@ -95,7 +95,7 @@ module Ruboty
         def schedule_horai_time
           @schedule_horai_time ||=
             begin
-              Horai::JaJP.new.parse(@original_body) || schedule_date
+              Horai::JaJP.new.parse(@original_body).to_time
             rescue => _
               schedule_date
             end
