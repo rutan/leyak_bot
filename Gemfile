@@ -7,7 +7,7 @@ gem 'foreman'
 #gem 'ruboty-redis'
 gem 'ruboty-local_yaml'
 
-gem 'ragoon', github: 'rutan/ragoon', branch: 'schedule_add_events'
+gem 'ragoon'
 gem 'ruboty-leyak_core', path: 'ruboty-leyak_core'
 
 group :production do
