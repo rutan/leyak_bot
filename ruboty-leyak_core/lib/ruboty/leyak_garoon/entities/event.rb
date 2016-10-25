@@ -50,14 +50,28 @@ module Ruboty
         def to_s
           array = []
           array << '-'
-          array << self.period
+          array << format_title
+          array << "\n    - #{self.url}" unless private?
+          array.join(' ')
+        end
+
+        def to_attachment
+          {
+            fallback: format_title,
+            title: format_title,
+            title_link: self.url,
+            color: '#004ea1'
+          }
+        end
+
+        def format_title
+          array = [self.period]
           if private?
             array << '予定あり'
           else
             array << "[#{self.plan}]" if self.plan.to_s.size > 0
             array << self.title
             array << "(#{self.facilities.join(' ')})" if self.facilities.size > 0
-            array << "\n    - #{self.url}"
           end
           array.join(' ')
         end

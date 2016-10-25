@@ -14,13 +14,11 @@ module Ruboty
 
           if events.size > 0
             messages << "#{date.strftime("%m/%d")}の予定はこんな感じだよ"
-            messages << '```'
-            messages << events.map { |n| Ruboty::LeyakGaroon::Entities::Event.new(n).to_s }
-            messages << '```'
+            attachments.concat events.map { |n| Ruboty::LeyakGaroon::Entities::Event.new(n).to_attachment }
           else
             messages << "#{date.strftime("%m/%d")}は特に予定無いみたいかな"
           end
-          message.reply(messages.join("\n"))
+          message.reply(messages.join("\n"), attachments: attachments)
         end
 
         private

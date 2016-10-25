@@ -33,7 +33,7 @@ module Ruboty
       end
 
       def remind(message)
-        message.reply(message[:content])
+        message.reply(message[:content], attachments: message[:attachments])
       end
 
       def show(message)

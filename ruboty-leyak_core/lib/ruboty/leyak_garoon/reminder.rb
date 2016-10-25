@@ -40,7 +40,8 @@ module Ruboty
         }
         if events.size > 0
           @robot.receive(
-              body: "/remind-message @#{remind_owner} もうすぐ時間だよ\n```\n#{events.join("\n")}\n```",
+              body: "/remind-message @#{remind_owner} もうすぐ時間だよ",
+              attachments: events.map(&:to_attachment),
               from: remind_channel,
           )
         end

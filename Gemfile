@@ -11,6 +11,6 @@ gem 'ragoon'
 gem 'ruboty-leyak_core', path: 'ruboty-leyak_core'
 
 group :production do
-  gem 'ruboty-slack_rtm'
+  gem 'ruboty-slack_rtm', github: 'rutan/ruboty-slack_rtm', branch: 'attachment'
 end
 

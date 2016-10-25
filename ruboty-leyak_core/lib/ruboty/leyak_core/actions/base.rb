@@ -11,6 +11,10 @@ module Ruboty
           @messages ||= []
         end
 
+        def attachments
+          @attachments ||= []
+        end
+
         def store
           @store ||= Ruboty::LeyakCore::BrainWrapper.new(message.robot.brain, self.class.get_store_namespace)
         end
