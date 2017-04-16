@@ -1,4 +1,5 @@
 .env
 /vendor/bundle
+/tmp
 ruboty.yml
 

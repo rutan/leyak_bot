@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+require 'bundler'
+Bundler.require
+
+env = ENV['RUBOTY_ENV'] || 'development'
+pid_file = File.expand_path("../../tmp/pids/leyak_#{env}.pid", __FILE__)
+FileUtils.mkdir_p(File.dirname(pid_file))
+
+argv = %w[--dotenv]
+argv.push('--pid', pid_file)
+argv.push('-l', File.expand_path('../../lib/bootstrap.rb', __FILE__))
+
+Ruboty::CommandBuilder.new(argv.concat(ARGV)).build.call

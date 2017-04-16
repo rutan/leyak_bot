@@ -1,2 +1,1 @@
-worker: RUBOTY_ENV=production bundle exec ruboty --dotenv
-
+worker: RUBOTY_ENV=production bundle exec bin/leyak_bot
