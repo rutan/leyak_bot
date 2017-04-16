@@ -1,3 +1,12 @@
+GIT
+  remote: git://github.com/rutan/ragoon.git
+  revision: d5a608b5c0c957d6e7bbb45b7fdd94f767742c1d
+  branch: add_wsdl_parameter
+  specs:
+    ragoon (0.8.1)
+      nokogiri (~> 1.7)
+      rest-client (~> 2.0)
+
 PATH
   remote: ruboty-leyak_core
   specs:
@@ -54,9 +63,6 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
-    ragoon (0.8.1)
-      nokogiri (~> 1.7)
-      rest-client (~> 2.0)
     rest-client (2.0.1)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
@@ -101,7 +107,7 @@ PLATFORMS
 DEPENDENCIES
   foreman
   pry
-  ragoon
+  ragoon!
   ruboty
   ruboty-leyak_core!
   ruboty-local_yaml

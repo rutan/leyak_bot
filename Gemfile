@@ -6,7 +6,7 @@ gem 'foreman'
 #gem 'ruboty-redis'
 gem 'ruboty-local_yaml'
 
-gem 'ragoon'
+gem 'ragoon', github: 'rutan/ragoon', branch: 'add_wsdl_parameter'
 gem 'ruboty-leyak_core', path: 'ruboty-leyak_core'
 
 group :production do
