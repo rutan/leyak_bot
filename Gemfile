@@ -13,3 +13,7 @@ group :production do
   gem 'ruboty-slack_rtm'
 end
 
+group :development do
+  gem 'pry'
+end
+
