@@ -12,10 +12,10 @@ module Handlers
 
     # TODO: 外部から設定できるようにするぞ！
     TARGETS = [
-      {
-        name: 'Nintendo Switch',
-        url: 'http://www.yodobashi.com/Nintendo-Switch%E7%94%A8%E3%82%B2%E3%83%BC%E3%83%A0%E6%A9%9F%E6%9C%AC%E4%BD%93/ct/269013_000000000000001848/'
-      }
+      #{
+      #  name: 'Nintendo Switch',
+      #  url: 'http://www.yodobashi.com/Nintendo-Switch%E7%94%A8%E3%82%B2%E3%83%BC%E3%83%A0%E6%A9%9F%E6%9C%AC%E4%BD%93/ct/269013_000000000000001848/'
+      #}
     ]
 
     def initialize(robot)
