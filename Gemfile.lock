@@ -1,9 +1,9 @@
 GIT
   remote: git://github.com/rutan/ragoon.git
-  revision: d5a608b5c0c957d6e7bbb45b7fdd94f767742c1d
-  branch: add_wsdl_parameter
+  revision: 6f21177596a62afd166619359718dc5164d5bf5c
+  ref: 6f21177596a62afd166619359718dc5164d5bf5c
   specs:
-    ragoon (0.8.1)
+    ragoon (1.0.0)
       nokogiri (~> 1.7)
       rest-client (~> 2.0)
 

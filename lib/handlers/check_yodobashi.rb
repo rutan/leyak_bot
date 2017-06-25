@@ -8,7 +8,7 @@ require 'nokogiri'
 module Handlers
   # ヨドバシドットコムの在庫を監視する
   class CheckYodobashi < Ruboty::Handlers::Base
-    env :NOTIFY_YODOBASHI_CHANNEL, '在庫情報を通知するチャンネル', optional: false
+    env :NOTIFY_CHANNEL, '在庫情報を通知するチャンネル', optional: false
 
     # TODO: 外部から設定できるようにするぞ！
     TARGETS = [
@@ -21,7 +21,7 @@ module Handlers
     def initialize(robot)
       super(robot)
       @notify_cache = {}
-      start_crawler
+      # start_crawler
     end
 
     private
@@ -102,7 +102,7 @@ module Handlers
     end
 
     def channel
-      ENV['NOTIFY_YODOBASHI_CHANNEL']
+      ENV['NOTIFY_CHANNEL']
     end
   end
 end

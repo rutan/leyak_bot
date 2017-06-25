@@ -5,9 +5,22 @@ $LOAD_PATH.unshift LIB_PATH
 require 'active_support'
 require 'active_support/core_ext'
 
-# leyak
-require 'ruboty/leyak_garoon/handler' if ENV['IGNORE_GAROON'].to_i == 0
+# utils
+require 'utils/notify_action'
+require 'utils/remind_timer'
 
+# entity
+require 'entities/base'
+require 'entities/schedule_item'
+
+# repository
+require 'repositories/schedule_repository'
+
+# action
+require 'actions/schedules/show'
+require 'actions/schedules/register'
+
+# handler
 Dir.glob("#{LIB_PATH}/handlers/*.rb").sort.each do |path|
   require path
 end
