@@ -6,7 +6,7 @@ gem 'foreman'
 #gem 'ruboty-redis'
 gem 'ruboty-local_yaml'
 
-gem 'ragoon', github: 'rutan/ragoon', ref: '6f21177596a62afd166619359718dc5164d5bf5c'
+gem 'ragoon', github: 'rutan/ragoon', ref: '33fe90b22ad7a23e47416a64728d3383f2e4028b'
 gem 'horai'
 gem 'nokogiri'
 gem 'rest-client'

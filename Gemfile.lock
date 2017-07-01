@@ -1,7 +1,7 @@
 GIT
   remote: git://github.com/rutan/ragoon.git
-  revision: 6f21177596a62afd166619359718dc5164d5bf5c
-  ref: 6f21177596a62afd166619359718dc5164d5bf5c
+  revision: 33fe90b22ad7a23e47416a64728d3383f2e4028b
+  ref: 33fe90b22ad7a23e47416a64728d3383f2e4028b
   specs:
     ragoon (1.0.0)
       nokogiri (~> 1.7)
