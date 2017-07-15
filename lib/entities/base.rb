@@ -1,5 +1,3 @@
-require 'entities/base'
-
 module Entities
   class Base
     def initialize(attrs = {})

@@ -1,26 +1,15 @@
-LIB_PATH = File.expand_path('../', __FILE__)
-$LOAD_PATH.unshift LIB_PATH
-
 # common gem
 require 'active_support'
 require 'active_support/core_ext'
+require 'active_support/dependencies'
 
-# utils
-require 'utils/notify_action'
-require 'utils/remind_timer'
+# config
+LIB_PATH = File.expand_path('../', __FILE__)
+$LOAD_PATH.unshift LIB_PATH
+ActiveSupport::Dependencies.autoload_paths << LIB_PATH
 
-# entity
-require 'entities/base'
-require 'entities/schedule_item'
-
-# repository
-require 'repositories/schedule_repository'
-
-# action
-require 'actions/schedules/show'
-require 'actions/schedules/register'
-
-# handler
-Dir.glob("#{LIB_PATH}/handlers/*.rb").sort.each do |path|
-  require path
+# entities / handlers
+%w[entities handlers].each do |dir|
+  Dir.glob("#{LIB_PATH}/#{dir}/**/*.rb").sort.each { |path| require(path) }
 end
+
