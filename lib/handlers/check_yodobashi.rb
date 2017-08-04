@@ -8,27 +8,28 @@ require 'nokogiri'
 module Handlers
   # ヨドバシドットコムの在庫を監視する
   class CheckYodobashi < Ruboty::Handlers::Base
-    env :NOTIFY_CHANNEL, '在庫情報を通知するチャンネル', optional: false
+    env :NOTIFY_YODOBASHI_CHANNEL, '在庫情報を通知するチャンネル', optional: false
+    env :NOTIFY_YODOBASHI_OWNER, '在庫情報を通知する相手', optional: false
 
     # TODO: 外部から設定できるようにするぞ！
     TARGETS = [
-      #{
-      #  name: 'Nintendo Switch',
-      #  url: 'http://www.yodobashi.com/Nintendo-Switch%E7%94%A8%E3%82%B2%E3%83%BC%E3%83%A0%E6%A9%9F%E6%9C%AC%E4%BD%93/ct/269013_000000000000001848/'
-      #}
+      {
+        name: 'Nintendo Switch',
+        url: 'http://www.yodobashi.com/Nintendo-Switch%E7%94%A8%E3%82%B2%E3%83%BC%E3%83%A0%E6%A9%9F%E6%9C%AC%E4%BD%93/ct/269013_000000000000001848/'
+      }
     ]
 
     def initialize(robot)
       super(robot)
       @notify_cache = {}
-      # start_crawler
+      start_crawler
     end
 
     private
 
     def start_crawler
       @thread = Thread.new do
-        Chrono::Trigger.new('*/3 * * * *') {
+        Chrono::Trigger.new('*/2 * * * *') {
           begin
             notify_channel(select_require_notify(fetch))
           rescue => e
@@ -98,11 +99,11 @@ module Handlers
     end
 
     def owner_name
-      ENV['NOTIFY_OWNER_NAME']
+      ENV['NOTIFY_YODOBASHI_OWNER']
     end
 
     def channel
-      ENV['NOTIFY_CHANNEL']
+      ENV['NOTIFY_YODOBASHI_CHANNEL']
     end
   end
 end
