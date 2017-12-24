@@ -1,3 +1,13 @@
+GIT
+  remote: git://github.com/rutan/ruboty-slack_rtm.git
+  revision: c13d046062fec73eba2b5f8abe9301e9948b59f1
+  branch: reconnect
+  specs:
+    ruboty-slack_rtm (2.8.0)
+      ruboty (>= 1.1.4)
+      slack-api (~> 1.6)
+      websocket-client-simple (~> 0.3.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -64,10 +74,6 @@ GEM
       slop
     ruboty-local_yaml (0.1.0)
       ruboty
-    ruboty-slack_rtm (2.7.2)
-      ruboty (>= 1.1.4)
-      slack-api (~> 1.2)
-      websocket-client-simple (~> 0.3.0)
     slack-api (1.6.0)
       faraday (~> 0.11)
       faraday_middleware (~> 0.10.0)
@@ -102,7 +108,7 @@ DEPENDENCIES
   rest-client
   ruboty
   ruboty-local_yaml
-  ruboty-slack_rtm
+  ruboty-slack_rtm!
 
 BUNDLED WITH
    1.16.0

@@ -13,7 +13,7 @@ gem 'rest-client'
 gem 'chrono'
 
 group :production do
-  gem 'ruboty-slack_rtm'
+  gem 'ruboty-slack_rtm', github: 'rutan/ruboty-slack_rtm', branch: 'reconnect'
 end
 
 group :development do
