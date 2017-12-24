@@ -3,6 +3,22 @@ require 'active_support'
 require 'active_support/core_ext'
 require 'active_support/dependencies'
 
+# patch
+class ::Ruboty::Adapters::SlackRTM
+  alias ru_bot_patch_run run
+  def run
+    Ruboty.logger.info "ru_bot_patch_run start"
+    while true
+      ru_bot_patch_run
+
+      Ruboty.logger.info "ru_bot_patch_run disconnect"
+      @url = nil
+      @realtime = nil
+      sleep 3
+    end
+  end
+end
+
 # config
 LIB_PATH = File.expand_path('../', __FILE__)
 $LOAD_PATH.unshift LIB_PATH
