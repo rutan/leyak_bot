@@ -44,12 +44,15 @@ module Actions
         @schedule_time ||=
           begin
             time = schedule_horai_time
-            if time.strftime('%F') != schedule_date.strftime('%F')
-              time.year = schedule_date.year
-              time.month = schedule_date.month
-              time.day = schedule_date.day
-            end
-            time
+            return time if time.strftime('%F') == schedule_date.strftime('%F')
+            Time.new(
+              schedule_date.year,
+              schedule_date.month,
+              schedule_date.day,
+              time.hour,
+              time.min,
+              time.sec
+            )
           end
       end
 
