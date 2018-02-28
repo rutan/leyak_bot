@@ -1,7 +1,11 @@
 #!/usr/bin/env ruby
 
 require 'bundler'
-Bundler.require
+
+Bundler.setup
+$LOAD_PATH.unshift(Bundler.definition.requested_specs.find { |s| s.name == 'ruboty' }.load_paths.first)
+
+require 'ruboty'
 
 env = ENV['RUBOTY_ENV'] || 'development'
 pid_file = File.expand_path("../../tmp/pids/leyak_#{env}.pid", __FILE__)
