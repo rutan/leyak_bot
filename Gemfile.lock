@@ -63,7 +63,8 @@ GEM
       slop
     ruboty-local_yaml (0.1.0)
       ruboty
-    ruboty-slack_rtm (2.9.0)
+    ruboty-slack_rtm (3.0.0)
+      faraday (~> 0.11)
       ruboty (>= 1.1.4)
       slack-api (~> 1.6)
       websocket-client-simple (~> 0.3.0)
@@ -72,7 +73,7 @@ GEM
       faraday_middleware (~> 0.10.0)
       faye-websocket (~> 0.10.6)
       multi_json (~> 1.0, >= 1.0.3)
-    slop (4.6.1)
+    slop (4.6.2)
     thor (0.19.4)
     thread_safe (0.3.6)
     tzinfo (1.2.5)
