@@ -1,18 +1,13 @@
 require 'ragoon'
 require 'date'
 
-module Repositories
-  class ScheduleRepository
-    def initialize(brain)
-      @brain = brain
-    end
-    attr_reader :brain
-
+module Schedules
+  class Client
     def fetch(start_time, end_time)
       Ragoon::Services::Schedule.new.schedule_get_events(
         start: start_time.utc,
         end: end_time.utc
-      ).map { |e| ::Entities::ScheduleItem.from(e) }
+      ).map { |e| ::Schedules::Item.from(e) }
     end
 
     def register(schedule_item)
@@ -24,7 +19,7 @@ module Repositories
         users: schedule_item.users.map {|u| u[:id]},
         allday: schedule_item.allday?
       )
-      ::Entities::ScheduleItem.from(e)
+      ::Schedules::Item.from(e)
     end
   end
 end

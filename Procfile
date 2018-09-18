@@ -1,1 +1,1 @@
-worker: RUBOTY_ENV=production bundle exec bin/leyak_bot
+worker: REPP_ENV=production bundle exec bin/leyak_bot

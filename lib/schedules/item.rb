@@ -1,6 +1,12 @@
-module Entities
-  class ScheduleItem < Base
+module Schedules
+  class Item
     attr_accessor :id, :url, :plan, :title, :description, :users, :start_at, :end_at, :facilities, :is_private, :is_allday
+
+    def initialize(attrs = {})
+      attrs.each do |k, v|
+        public_send("#{k}=", v)
+      end
+    end
 
     def private?
       is_private
