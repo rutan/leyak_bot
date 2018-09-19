@@ -74,8 +74,12 @@ on /.*(?:(?<date_str>今日|本日|明日|明後日)の予定).*/, ignore_bot: t
   end
 end
 
+on /.+/, ignore_bot: true, reply_to_me: true do
+  render 'talk.normal'
+end
+
 # 毎朝のお知らせ
-cron '0 9 * * *' do
+cron '0 9 * * *', dest_to: ENV['NOTIFY_CHANNEL_ID'] do
   count = 0
   begin
     date = Date.today

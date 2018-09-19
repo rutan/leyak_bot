@@ -35,3 +35,8 @@ schedule:
       - '<@ru_shalm> 早くしないと間に合わないよ'
       - '<@ru_shalm> ほら、急いで！'
       - '<@ru_shalm> まーだー？'
+talk:
+  normal:
+    - 今忙しい
+    - なーにー？
+    - ん、何かようかな？
