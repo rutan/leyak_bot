@@ -1,1 +1,1 @@
-worker: REPP_ENV=production bundle exec ruby entry.rb
+worker: REPP_ENV=production bundle exec bin/leyak_bot
