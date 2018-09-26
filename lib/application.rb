@@ -1,3 +1,6 @@
+require 'mobb/base'
+require_relative './bootstrap.rb'
+
 class LeyakBot < Mobb::Base
   # settings
   set :service, 'slack' unless ENV['SLACK_TOKEN'].to_s.empty?
@@ -80,7 +83,7 @@ class LeyakBot < Mobb::Base
       date = Date.today
       schedules = ::Schedules::Client.new.fetch(date.to_time, (date + 1).to_time - 1)
       return if schedules.empty?
-      render 'schedule.show.present',
+      render 'schedule.today',
         locals: { date: date },
         attachments: schedules.map(&:to_attachment)
     rescue => e
