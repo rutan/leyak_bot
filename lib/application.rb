@@ -2,27 +2,17 @@ require 'mobb/base'
 require_relative './bootstrap.rb'
 
 class LeyakBot < Mobb::Base
+  register ::Extensions::TalkRendererExtension
+
   # settings
   set :service, 'slack' unless ENV['SLACK_TOKEN'].to_s.empty?
   set :name, 'leyak_bot'
 
+  register_render_file File.expand_path('../script.yml', __FILE__)
+
   def initialize
     super
     ::Schedules::RemindManager.instance.fetch
-  end
-
-  helpers do
-    $script_manager = ::ScriptManager.load_yaml(File.expand_path('../script.yml', __FILE__))
-
-    def render(tempalte_name, options = {})
-      body = $script_manager.render(tempalte_name, options[:locals] || {})
-      [
-        "#{options[:reply] ? "#{options[:reply]} " : ''}#{body}",
-        {
-          attachments: options[:attachments]
-        }
-      ]
-    end
   end
 
   on /(?:^|\s*)ping$/, ignore_bot: true, reply_to_me: true do
@@ -59,7 +49,7 @@ class LeyakBot < Mobb::Base
     begin
       schedules = ::Schedules::Client.new.fetch(date.to_time, (date + 1).to_time - 1)
       if schedules.empty?
-        render 'schedule.show.empty', date: date
+        render 'schedule.show.empty', locals: { date: date }
       else
         render 'schedule.show.present',
           locals: { date: date },
