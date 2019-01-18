@@ -5,21 +5,21 @@ class LeyakBot < Mobb::Base
   register ::Extensions::TalkRendererExtension
 
   # settings
-  set :service, 'slack' unless ENV['SLACK_TOKEN'].to_s.empty?
   set :name, 'leyak_bot'
+  set :service, 'slack' unless ENV['SLACK_TOKEN'].to_s.empty?
 
   register_render_file File.expand_path('../script.yml', __FILE__)
 
   def initialize
     super
-    ::Schedules::RemindManager.instance.fetch
+    ::Calendars::RemindManager.instance.fetch
   end
 
-  on /(?:^|\s*)ping$/, ignore_bot: true, reply_to_me: true do
+  on /(?:^|\s*)ping$/, reply_to_me: true do
     render 'ping.pong'
   end
 
-  on /.*(?:予定|ガル+ーン|ｶﾞﾙ+ｰﾝ).*(?:追加|登録|作成).*/, ignore_bot: true, reply_to_me: true do
+  on /.*(?:予定|ガル+ーン|ｶﾞﾙ+ｰﾝ).*(?:追加|登録|作成).*/, reply_to_me: true do
     begin
       schedule = Schedules::RegisterTask.new.call(@env.body)
       ::Schedules::RemindManager.instance.fetch
@@ -33,7 +33,38 @@ class LeyakBot < Mobb::Base
     end
   end
 
-  on /.*(?:(?<date_str>今日|本日|明日|明後日)の予定).*/, ignore_bot: true, reply_to_me: true do |date_str|
+  on /.*(?:(?<date_str>今日|本日|明日|明後日|明々後日)の(?:予定|カレンダー)).*/, reply_to_me: true do |date_str|
+    date =
+      case date_str
+      when '明日'
+        Date.today + 1
+      when '明後日'
+        Date.today + 2
+      when '明々後日'
+        Date.today + 3
+      when '昨日'
+        Date.today - 1
+      else
+        Date.today
+      end
+
+    begin
+      schedules = ::Calendars::Client.new.fetch(date.to_time, (date + 1).to_time - 1)
+      if schedules.empty?
+        render 'schedule.show.empty', locals: { date: date }
+      else
+        render 'schedule.show.present',
+          locals: { date: date },
+          attachments: schedules.map(&:to_attachment)
+      end
+    rescue => e
+      puts e.inspect
+      puts e.backtrace
+      render 'schedule.show.failed'
+    end
+  end
+
+  on /.*(?:(?<date_str>今日|本日|明日|明後日)のガルーン).*/, reply_to_me: true do |date_str|
     date =
       case date_str
       when '明日'
@@ -62,7 +93,7 @@ class LeyakBot < Mobb::Base
     end
   end
 
-  on /.+/, ignore_bot: true, reply_to_me: true do
+  on /.+/, reply_to_me: true do
     render 'talk.normal'
   end
 
@@ -71,7 +102,7 @@ class LeyakBot < Mobb::Base
     count = 0
     begin
       date = Date.today
-      schedules = ::Schedules::Client.new.fetch(date.to_time, (date + 1).to_time - 1)
+      schedules = ::Calendars::Client.new.fetch(date.to_time, (date + 1).to_time - 1)
       return if schedules.empty?
       render 'schedule.today',
         locals: { date: date },
@@ -84,13 +115,31 @@ class LeyakBot < Mobb::Base
     end
   end
 
+  # 毎朝のお知らせ（ガルーン）
+  cron '1 9 * * *', dest_to: ENV['NOTIFY_CHANNEL_ID'] do
+    count = 0
+    begin
+      date = Date.today
+      schedules = ::Schedules::Client.new.fetch(date.to_time, (date + 1).to_time - 1)
+      return if schedules.empty?
+      render 'schedule.today_garoon',
+        locals: { date: date },
+        attachments: schedules.map(&:to_attachment)
+    rescue => e
+      puts e.inspect
+      puts e.backtrace
+      count += 1
+      retry if count < 5
+    end
+  end
+
   # 5分前通知
   cron '* * * * *', dest_to: ENV['NOTIFY_CHANNEL_ID'] do
-    items = ::Schedules::RemindManager.instance.remind(:notice)
-    return nil if items.empty?
     begin
+      items = ::Calendars::RemindManager.instance.remind(:notice)
+      return nil if items.empty?
       render 'schedule.reminder.notice',
-        attachments: items.map(&:to_attachment)
+      attachments: items.map(&:to_attachment)
     rescue => e
       puts e.inspect
     end
@@ -98,9 +147,9 @@ class LeyakBot < Mobb::Base
 
   # 1分前通知
   cron '* * * * *', dest_to: ENV['NOTIFY_CHANNEL_ID'] do
-    items = ::Schedules::RemindManager.instance.remind(:hurry)
-    return nil if items.empty?
     begin
+      items = ::Calendars::RemindManager.instance.remind(:hurry)
+      return nil if items.empty?
       render 'schedule.reminder.hurry',
         attachments: items.map(&:to_attachment)
     rescue => e
@@ -110,7 +159,7 @@ class LeyakBot < Mobb::Base
 
   # スケジュールの再取得
   cron '*/3 * * * *' do
-    ::Schedules::RemindManager.instance.fetch
+    ::Calendars::RemindManager.instance.fetch
     nil # always nil
   end
 end

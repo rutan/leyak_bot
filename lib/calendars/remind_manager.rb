@@ -1,5 +1,4 @@
-
-module Schedules
+module Calendars
   class RemindManager
     @@mutex = Mutex.new
 
@@ -43,7 +42,7 @@ module Schedules
     def fetch
       @@mutex.synchronize do
         begin
-          @recent_items = ::Schedules::Client.new.fetch(Time.now.utc, Time.now.utc + 86400)
+          @recent_items = ::Calendars::Client.new.fetch(Time.now.utc, Time.now.utc + 86400)
         rescue => e
           puts e.inspect
         end

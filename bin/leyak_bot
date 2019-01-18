@@ -1,10 +1,4 @@
 #!/usr/bin/env ruby
 
-begin
-  require 'dotenv'
-  Dotenv.load
-rescue => _
-end
-
 require_relative '../lib/application.rb'
 LeyakBot.run!
