@@ -19,20 +19,6 @@ class LeyakBot < Mobb::Base
     render 'ping.pong'
   end
 
-  on /.*(?:予定|ガル+ーン|ｶﾞﾙ+ｰﾝ).*(?:追加|登録|作成).*/, reply_to_me: true do
-    begin
-      schedule = Schedules::RegisterTask.new.call(@env.body)
-      ::Schedules::RemindManager.instance.fetch
-      render 'schedule.register.success',
-        attachments: [schedule.to_attachment]
-    rescue Schedules::RegisterTask::EmptyTitleError
-      render 'schedule.register.empty_title'
-    rescue => e
-      puts e.inspect
-      render 'schedule.register.failed'
-    end
-  end
-
   on /.*(?:(?<date_str>今日|本日|明日|明後日|明々後日)の(?:予定|カレンダー)).*/, reply_to_me: true do |date_str|
     date =
       case date_str
@@ -64,35 +50,6 @@ class LeyakBot < Mobb::Base
     end
   end
 
-  on /.*(?:(?<date_str>今日|本日|明日|明後日)のガルーン).*/, reply_to_me: true do |date_str|
-    date =
-      case date_str
-      when '明日'
-        Date.today + 1
-      when '明後日'
-        Date.today + 2
-      when '昨日'
-        Date.today - 1
-      else
-        Date.today
-      end
-
-    begin
-      schedules = ::Schedules::Client.new.fetch(date.to_time, (date + 1).to_time - 1)
-      if schedules.empty?
-        render 'schedule.show.empty', locals: { date: date }
-      else
-        render 'schedule.show.present',
-          locals: { date: date },
-          attachments: schedules.map(&:to_attachment)
-      end
-    rescue => e
-      puts e.inspect
-      puts e.backtrace
-      render 'schedule.show.failed'
-    end
-  end
-
   on /.+/, reply_to_me: true do
     render 'talk.normal'
   end
@@ -105,24 +62,6 @@ class LeyakBot < Mobb::Base
       schedules = ::Calendars::Client.new.fetch(date.to_time, (date + 1).to_time - 1)
       return if schedules.empty?
       render 'schedule.today',
-        locals: { date: date },
-        attachments: schedules.map(&:to_attachment)
-    rescue => e
-      puts e.inspect
-      puts e.backtrace
-      count += 1
-      retry if count < 5
-    end
-  end
-
-  # 毎朝のお知らせ（ガルーン）
-  cron '1 9 * * *', dest_to: ENV['NOTIFY_CHANNEL_ID'] do
-    count = 0
-    begin
-      date = Date.today
-      schedules = ::Schedules::Client.new.fetch(date.to_time, (date + 1).to_time - 1)
-      return if schedules.empty?
-      render 'schedule.today_garoon',
         locals: { date: date },
         attachments: schedules.map(&:to_attachment)
     rescue => e
