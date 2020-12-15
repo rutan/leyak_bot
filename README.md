@@ -1,5 +1,7 @@
 # Leyak bot
 
+![](https://i.gyazo.com/ee3ef61cb1e0a9ba0a4fd26069b6eec2.png)
+
 Ruたんのお手伝いbot
 
 ## Usage
