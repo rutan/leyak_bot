@@ -46,6 +46,10 @@ schedule:
       - '<@ru_shalm> ほら、急いで！'
       - '<@ru_shalm> まーだー？'
       - '<@ru_shalm> もう、まだなの！？'
+time:
+  show:
+    - 今は<%= time.strftime('%Y年%m月%d日 %H時%M分%S秒') %>だよ
+    - たぶん<%= time.strftime('%Y年%m月%d日 %H時%M分%S秒') %>くらいじゃない？
 talk:
   normal:
     - 今忙しい

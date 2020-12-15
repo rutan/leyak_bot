@@ -50,6 +50,10 @@ class LeyakBot < Mobb::Base
     end
   end
 
+  on /(なんじ|何時)(\?|？)/ do
+    render 'time.show', locals: { time: Time.now }
+  end
+
   on /.+/, reply_to_me: true do
     render 'talk.normal'
   end
