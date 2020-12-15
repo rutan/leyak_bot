@@ -12,7 +12,6 @@ gem 'activerecord'
 gem 'sqlite3'
 
 gem 'google-api-client'
-gem 'ragoon'
 gem 'horai'
 
 group :development do
