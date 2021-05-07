@@ -37,6 +37,9 @@ schedule:
       - なんかエラー画面でちゃった
   reminder:
     notice:
+      - 'こんな予定があるみたい'
+      - '一応、お知らせしておくね'
+    call:
       - '<@ru_shalm> もうすぐ時間だよ'
       - '<@ru_shalm> そろそろ時間だねぇ'
       - '<@ru_shalm> あと5分だよ'

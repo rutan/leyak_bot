@@ -81,8 +81,12 @@ class LeyakBot < Mobb::Base
     begin
       items = ::Calendars::RemindManager.instance.remind(:notice)
       return nil if items.empty?
-      render 'schedule.reminder.notice',
-      attachments: items.map(&:to_attachment)
+
+      if items.all?(&:declined?)
+        render 'schedule.reminder.notice', attachments: items.map(&:to_attachment)
+      else
+        render 'schedule.reminder.call', attachments: items.map(&:to_attachment)
+      end
     rescue => e
       puts e.inspect
     end
@@ -93,6 +97,7 @@ class LeyakBot < Mobb::Base
     begin
       items = ::Calendars::RemindManager.instance.remind(:hurry)
       return nil if items.empty?
+      return nil if items.all?(&:declined?)
       render 'schedule.reminder.hurry',
         attachments: items.map(&:to_attachment)
     rescue => e
