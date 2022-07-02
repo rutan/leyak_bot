@@ -10,6 +10,11 @@ require 'active_support/core_ext'
 require 'active_support/dependencies'
 require_relative './initializers/activerecord.rb'
 
+require 'slack-ruby-client'
+Slack::RealTime::Client.configure do |config|
+  config.store_class = Slack::RealTime::Stores::Starter
+end
+
 require 'repp'
 
 # auto loader
