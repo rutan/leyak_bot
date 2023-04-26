@@ -44,11 +44,6 @@ schedule:
       - '<@ru_shalm> そろそろ時間だねぇ'
       - '<@ru_shalm> あと5分だよ'
       - '<@ru_shalm> ふっふっふ、ちゃんと覚えてるかなぁ？'
-    hurry:
-      - '<@ru_shalm> 早くしないと間に合わないよ'
-      - '<@ru_shalm> ほら、急いで！'
-      - '<@ru_shalm> まーだー？'
-      - '<@ru_shalm> もう、まだなの！？'
 time:
   show:
     - 今は<%= time.strftime('%Y年%m月%d日 %H時%M分%S秒') %>だよ

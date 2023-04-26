@@ -92,19 +92,6 @@ class LeyakBot < Mobb::Base
     end
   end
 
-  # 1分前通知
-  cron '* * * * *', dest_to: ENV['NOTIFY_CHANNEL_ID'] do
-    begin
-      items = ::Calendars::RemindManager.instance.remind(:hurry)
-      return nil if items.empty?
-      return nil if items.all?(&:declined?)
-      render 'schedule.reminder.hurry',
-        attachments: items.map(&:to_attachment)
-    rescue => e
-      puts e.inspect
-    end
-  end
-
   # スケジュールの再取得
   cron '*/3 * * * *' do
     ::Calendars::RemindManager.instance.fetch
