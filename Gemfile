@@ -4,6 +4,8 @@ gem 'foreman'
 gem 'dotenv'
 gem 'rake'
 
+gem 'zeitwerk'
+
 gem 'mobb'
 gem 'repp'
 gem 'slack-ruby-client'
@@ -15,6 +17,8 @@ gem 'sqlite3'
 
 gem 'google-api-client'
 gem 'horai'
+
+gem 'psych', '~> 3.1'
 
 group :development do
   gem 'pry'

@@ -7,7 +7,8 @@ ENV['REPP_ENV'] ||= 'development'
 
 require 'active_support'
 require 'active_support/core_ext'
-require 'active_support/dependencies'
+require 'zeitwerk'
+
 require_relative './initializers/activerecord.rb'
 
 require 'slack-ruby-client'
@@ -20,4 +21,7 @@ require 'repp'
 # auto loader
 LIB_PATH = File.expand_path('..', __FILE__)
 $:.unshift LIB_PATH
-ActiveSupport::Dependencies.autoload_paths << LIB_PATH
+
+loader = Zeitwerk::Loader.new
+loader.push_dir(LIB_PATH)
+loader.setup
